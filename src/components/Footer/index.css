@@ -1,0 +1,42 @@
+.list-unstyled li a{
+  text-decoration: none;
+  color: #a8a6a6;
+}
+.list-unstyled li a:hover{
+  color: #081F62;
+  text-decoration: underline;
+}
+.footer-icon{
+  width: 20px;
+  height: 20px;
+}
+.footer-icon {
+  background-color: transparent;
+  color: white;
+}
+.footer-container{
+  border-top: 2px solid #081F62;
+}
+
+.list-unstyled h5{
+  color: #081F62;
+  
+}
+.submit-btn{
+  color: white;
+  background-color: #081F62;
+  padding: .5rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.submit-btn:hover{
+  background-color: #3e4c75;
+}
+h5{
+  font-weight: 400;
+}
+.address-text{
+  color:#a8a6a6
+}
