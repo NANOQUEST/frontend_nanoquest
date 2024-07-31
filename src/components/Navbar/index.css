@@ -12,13 +12,8 @@
     padding: 0 100px;
 }
 
-.nav-link.active {
-    border-bottom: 2px solid #081F62;
-    
-}
-.navbar-container .dropdown-item:hover {
-    border-bottom: 2px solid #081F62;
-}
+
+
 .profiledropdown {
     display: none;
     position: absolute;
@@ -123,7 +118,7 @@
      background-color: #081F62;
      color: #fff;
      white-space: nowrap;
-     padding: 10px 15px;
+     padding: 5px 15px;
      border-radius: 7px;
      visibility: hidden;
      opacity: 0;
@@ -141,7 +136,13 @@
  }
 
  #tooltip:hover #tooltiptext {
-     bottom: -150%;
+     bottom: -80%;
      visibility: visible;
      opacity: 1;
  }
+
+ .enroll-text p {
+    display: inline;
+    white-space: nowrap;
+  }
+  
