@@ -8,6 +8,9 @@ import Cookies from 'js-cookie';
 import { auth, signInWithGoogle, logInWithEmailAndPassword, registerWithEmailAndPassword } from '../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import logo from '../../assets/NqLogo.png'
+import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+
 
 const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -55,16 +58,17 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
 
       const { result, token } = response.data;
       const { email: userEmail, _id: id } = result;
-
+     
       localStorage.setItem('email', userEmail);
       localStorage.setItem('id', id);
       localStorage.setItem('token', token);
+      localStorage.setItem("login",true)
       toggleLoginPopup(false);
-
+      toast.success('Login successful');
       Cookies.set('jwt_token', token, { expires: 30, path: '/' });
 
       navigate('/');
-      toast.success('Login successful');
+      
     } catch (error) {
       console.error('Login failed:', error);
       setError('Login failed. Please try again.');
@@ -79,7 +83,9 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
     try {
       await signInWithGoogle();
       toggleLoginPopup(false);
+      localStorage.setItem("login",true)
       toast.success('Login with Google successful');
+
     } catch (error) {
       console.error('Firebase login failed:', error);
       toast.error('Firebase login failed. Please try again.');
@@ -98,6 +104,7 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
       const response = await axios.post('https://llp-qxsy.onrender.com/user/signup', { name, email, password });
       console.log('Sign up successful:', response.data);
       setShowSignIn(!showSignIn);
+      LoginPopup(false)
       toast.success('Sign up successful. Please log in.');
     } catch (err) {
       console.error('Sign up error:', err);
@@ -120,7 +127,7 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
             </button>
             <div className="p-5 sm:p-8 rounded-l">
               <div className="flex items-center mb-4">
-                <img src={blog1} alt="Logo" className="h-10 w-10 mr-2" />
+                <img src={logo} alt="Logo" className="h-10 w-10 mr-2" />
                 <h1 className="text-2xl font-bold">{showSignIn ? 'Sign Up' : 'Login'}</h1>
               </div>
               <form onSubmit={showSignIn ? handleSignUp : handleLogin}>

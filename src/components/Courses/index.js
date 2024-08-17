@@ -39,7 +39,7 @@ const Courses = () => {
               {
                 totalData.map((item) => (
                   <article key={item._id} className="card__article">
-                    <img src={item.imgUrl} alt="image" className="card__img" />
+                    <img src={item.imgUrl} alt="image" className="card__img" /> 
                     <div className="card__data">
                       <h2 className="card__title">{item.category}</h2>
                       <Link to={`/subcourse/${item._id}`} className="card__button">View More</Link>

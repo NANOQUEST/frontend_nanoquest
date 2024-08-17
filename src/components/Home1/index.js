@@ -9,11 +9,10 @@ import LoginPopup from '../LoginPopup';
 const Home = () => {
   const [loginPopup, setLoginPopup] = useState(false);
   const [registerModal, setRegisterModal] = useState(false);
-
   const toggleLoginPopup = () => {
     setLoginPopup(!loginPopup);
   };
-
+  
   const closeRegisterModal = () => {
     setRegisterModal(false);
     // Set a flag in localStorage to indicate that the user has seen the register banner
@@ -43,7 +42,7 @@ const Home = () => {
             >
               &times;
             </button>
-            <RegisterBanner />
+            <RegisterBanner />  
           </div>
         </div>
       )}

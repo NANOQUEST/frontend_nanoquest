@@ -14,7 +14,7 @@ const SubCourse = () => {
 
   useEffect(() => {
     fetchSubCourses();
-  }, [id]);
+  }, [{id}]);
 
   const addToCart = async (course_id, course_name, course_price) => {
     const email = localStorage.getItem("email");
@@ -48,12 +48,13 @@ const SubCourse = () => {
 
   return (
     <>
-      <NavBar />
-      <div className="subcourses-container bg-amber-100 min-h-screen relative" style={{ backgroundImage: `url(${category.imgUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <NavBar category={subCourses}/>
+        
+      <div className="subcourses-container bg-amber-100 min-h-screen relative" style={{ background:'white', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="overlay"></div>
         <div className="content bg-transparent min-h-full">
           <h1 className='text-left font-bold text-sm text-gray-200 pt-2 mb-10 bg-transparent'>
-            <Link to='/courses' className='text-lg text-white bread-crum bg-transparent'>Courses</Link>/{category.category}
+            {/* <Link to='/courses' className='text-lg text-white bread-crum bg-transparent'>Courses</Link>/{category.category} */}
           </h1>
           <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 bg-transparent">
             {subCourses.map((subCourse) => (

@@ -8,14 +8,31 @@ import serviceImg3 from '../../assets/service-img-3.avif';
 import wcu1 from '../../assets/wcu-1.avif';
 import wcu2 from '../../assets/wcu-2.avif';
 import Carousel from '../Carousel';
+import { useNavigate } from 'react-router-dom';
+import { useInView } from 'framer-motion';
+// import LoginPopup from '../LoginPopup';
+// import ContactUs from '../Contactus';
 
 const Hero = ({toggleLoginPopup}) => {
     const [typedText, setTypedText] = useState("");
     const [startTyping, setStartTyping] = useState(false);
     
+    const navigate = useNavigate()
+    
     useEffect(() => {
         setStartTyping(true);
     }, []);
+
+ const blognavigate =(event)=>{
+    const btnid = event.target.id
+    if(btnid==="button1"){
+        navigate('/blog1')
+    } else if(btnid==="button2"){
+        navigate('/blog2')
+    }
+ } 
+    
+
 
     useEffect(() => {
         const text = 'Nanoquest';
@@ -40,11 +57,23 @@ const Hero = ({toggleLoginPopup}) => {
         }
         return () => clearInterval(intervalId);
     }, [startTyping]);
+     
+
+    function checkLocalStorage() {
+        const emailExists = localStorage.getItem("email");
+        if (emailExists) {
+             navigate('/Courses')
+        } else {
+            toggleLoginPopup(true)
+        }
+    }
+    
+    
 
     return (
         <div className="px-4 md:px-8 lg:px-16">
             <div className="home-container mt-3 flex flex-col lg:flex-row items-center justify-between">
-                <div className="home-content">
+                <div className="home-content ">
                     <motion.h1
                         initial={{ x: -100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
@@ -86,7 +115,7 @@ const Hero = ({toggleLoginPopup}) => {
                         }}
                         className="glow-on-hover mt-6 px-6 py-2 bg-blue-500 text-white rounded-lg text-sm"
                         type="button"
-                        onClick={() => toggleLoginPopup(true)}
+                        onClick={checkLocalStorage}
                     >
                         Upgrade Your Skills
                     </motion.button>
@@ -113,9 +142,9 @@ const Hero = ({toggleLoginPopup}) => {
             <h2 className='mt-20 text-center text-gray-500 text-2xl md:text-3xl lg:text-4xl'>Trending Skills</h2>
             <Carousel />
 
-            <div className='services-container mt-12'>
+            <div className='services-container mt-12 '>
                 <div className='service-cards-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
-                    <div className='service-card bg-white p-6 rounded-lg shadow-md'>
+                    <div className='service-card  p-6 rounded-lg '>
                         <div className='service-card-content mb-4'>
                             <motion.h4
                                 initial={{ x: -100, opacity: 0 }}
@@ -163,7 +192,7 @@ const Hero = ({toggleLoginPopup}) => {
                         </div>
                     </div>
 
-                    <div className='service-card bg-white p-6 rounded-lg shadow-md'>
+                    <div className='service-card  p-6 rounded-lg '>
                         <div className='service-card-content mb-4'>
                             <motion.h4
                                 initial={{ x: -100, opacity: 0 }}
@@ -211,7 +240,7 @@ const Hero = ({toggleLoginPopup}) => {
                         </div>
                     </div>
 
-                    <div className='service-card bg-white p-6 rounded-lg shadow-md'>
+                    <div className='service-card  p-6 rounded-lg '>
                         <div className='service-card-image mb-4'>
                             <motion.img
                                 initial={{ scale: 0.5, opacity: 0 }}
@@ -258,7 +287,7 @@ const Hero = ({toggleLoginPopup}) => {
                         </div>
                     </div>
 
-                    <div className='service-card bg-white p-6 rounded-lg shadow-md'>
+                    <div className='service-card  p-6 rounded-lg '>
                         <div className='service-card-image mb-4'>
                             <motion.img
                                 initial={{ scale: 0.5, opacity: 0 }}
@@ -338,7 +367,7 @@ const Hero = ({toggleLoginPopup}) => {
                     >
                         <figcaption>
                             <blockquote>
-                                <p>If you do the job badly enough, sometimes you don't get asked to do it again.</p>
+                                <p className='text-black'>If you do the job badly enough, sometimes you don't get asked to do it again.</p>
                             </blockquote>
                         </figcaption>
                     </motion.figure>
@@ -357,7 +386,7 @@ const Hero = ({toggleLoginPopup}) => {
                     >
                         <figcaption>
                             <blockquote>
-                                <p>I'm killing time while I wait for life to shower me with meaning and happiness.</p>
+                                <p className='text-black'>I'm killing time while I wait for life to shower me with meaning and happiness.</p>
                             </blockquote>
                         </figcaption>
                     </motion.figure>
@@ -376,58 +405,54 @@ const Hero = ({toggleLoginPopup}) => {
                     >
                         <figcaption>
                             <blockquote>
-                                <p>The only skills I have the patience to learn are those that have no real application in life. </p>
+                                <p className='text-black'>The only skills I have the patience to learn are those that have no real application in life. </p>
                             </blockquote>
                         </figcaption>
                     </motion.figure>
                 </div>
             </div>
 
-           <div className='why-choose-container mt-16'>
-            <div className='why-choose-card bg-cover bg-center bg-no-repeat bg-white p-6 bg-opacity-50 rounded-lg shadow-md flex flex-col lg:flex-row items-center w-[300px] h-[300px] mb-3'
-                style={{ backgroundImage: `url(${wcu1})` }}>
-                <div className='why-choose-card-content lg:ml-6 bg-transparent'>
-                    <motion.h3
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                        className="text-xl md:text-2xl lg:text-3xl  text-white font-bold bg-transparent"
-                    >
-                        Why Choose NanoQuest for Skillbased elearning
-                    </motion.h3>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3, duration: 0.5 }}
-                        className="mt-4 text-base md:text-lg lg:text-xl text-white"
-                    >
-                        Discover the power of skillbased interactive elearning with NanoQuest. Enhance your knowledge and expertise in a fun and engaging way. Join our platform today!
-                    </motion.p>
-                </div>
-            </div>
 
-            <div className='why-choose-card bg-cover bg-center bg-no-repeat bg-black p-6 rounded-lg shadow-md flex flex-col lg:flex-row items-center  w-[300px] h-[300px] bg-opacity-90 '
-                style={{ backgroundImage: `url(${wcu2})` }}>
-                <div className='why-choose-card-content lg:ml-6 bg-transparent'>
-                    <motion.h3
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                        className="text-xl md:text-2xl lg:text-3xl  text-white font-bold bg-transparent"
-                    >
-                        How NanoQuest Revolutionizes elearning
-                    </motion.h3>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3, duration: 0.5 }}
-                        className="mt-4 text-md md:text-lg lg:text-xl text-white bg-transparent"
-                    >
-                        Experience a new era of elearning with NanoQuest. Our skillbased interactive platform offers a unique and effective way to learn. Discover the features that make NanoQuest the leading choice for online education.
-                    </motion.p>
-                </div>
-            </div>
-        </div>
+
+             {/* card section */}
+             <div className="flex flex-col md:flex-row justify-between p-6 bg-background">
+      
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: false }}
+        className="bg-card rounded-lg  p-4 mb-6 md:mb-0 md:w-1/2 md:mr-4"
+      >
+        <img alt="Skillbased elearning" src={wcu1} className="rounded-lg mb-4" />
+        <h2 className="text-xl font-bold text-foreground">Why Choose NanoQuest for Skillbased elearning</h2>
+        <p className="text-black mb-2">
+          Discover the power of skillbased interactive elearning with NanoQuest. Enhance your knowledge and expertise in a fun and engaging way. Join our platform today!
+        </p>
+        <span className="text-muted-foreground"><button id='button1' onClick={blognavigate}> Read More</button></span>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: false }}
+        className="bg-card rounded-lg  p-4 md:w-1/2 md:ml-4"
+      >
+        <img alt="Revolutionizing elearning" src={wcu2} className="rounded-lg mb-4" />
+        <h2 className="text-xl font-bold text-foreground">How NanoQuest Revolutionizes elearning</h2>
+        <p className="text-black mb-2">
+          Experience a new era of elearning with NanoQuest. Our skillbased interactive platform offers a unique and effective way to learn. Discover the features that make NanoQuest the leading choice
+          for online education.
+        </p>
+        <span className="text-muted-foreground"><button id='button2' onClick={blognavigate}>Read More</button></span>
+      </motion.div>
+      
+    </div>
+
+
+
+        {/* <ContactUs></ContactUs> */}
         </div>
     )
 }

@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import logo from '../../assets/NqLogo.png'
 import './index.css';
 
-const NavBar = ({ toggleLoginPopup }) => {
+const NavBar = ({ toggleLoginPopup,category }) => {
   const location = useLocation();
   const [userData, setUserData] = useState(null);
   const [isProfileDropdown, setIsProfileDropdown] = useState(false);
@@ -68,15 +69,30 @@ const NavBar = ({ toggleLoginPopup }) => {
   }, [token, userEmail]);
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='navbar-container fixed-top' style={{ paddingLeft: '80px', paddingRight: '80px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='navbar-container fixed-top bg-white' style={{ paddingLeft: '80px', paddingRight: '80px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
       <Navbar.Brand href="/">
-        <img className='main-logo' src="https://res.cloudinary.com/ajaymedidhi7/image/upload/v1706082314/MicrosoftTeams-image_1_tiacii.jpg" alt="Logo" title="logo" />
+        <img className='main-logo' src={logo} alt="Logo" title="logo" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav" style={{ backgroundColor: "transparent" }}>
         <Nav className="mr-auto" style={{ backgroundColor: "transparent" }}>
           <Nav.Link href="/" className="nav-link" active={location.pathname === "/"}>Home</Nav.Link>
-          <Nav.Link href="courses" className="nav-link" active={location.pathname === "/courses"}>Skills</Nav.Link>
+          {/* <Nav.Link href="courses" className="nav-link" active={location.pathname === "/courses"}>Skills</Nav.Link> */}
+           <NavDropdown title= 'Skills ' id='collasible-nav-dropdown' style={{background:"transparent"}}>
+            <NavDropdown.Item href=''>BFSI</NavDropdown.Item>
+            <NavDropdown.Item href=''>IT-ITES</NavDropdown.Item>
+            <NavDropdown.Item href=''>Animation </NavDropdown.Item>
+            <NavDropdown.Item href=''>Science</NavDropdown.Item>
+            <NavDropdown.Item href=''>Arts</NavDropdown.Item>
+            <NavDropdown.Item href=''>Soft Skills</NavDropdown.Item>
+            <NavDropdown.Item href=''>Entrepreneur</NavDropdown.Item>
+            <NavDropdown.Item href=''>Digital Marketing</NavDropdown.Item>
+            <NavDropdown.Item href="/courses" className={location.pathname === '/courses' ? 'active' : ''}>
+                    View All
+                </NavDropdown.Item>
+           </NavDropdown>
+
+
           <NavDropdown title="Company" id="collasible-nav-dropdown" style={{ backgroundColor: "transparent" }}>
             <NavDropdown.Item href="aboutus">About Us</NavDropdown.Item>
             <NavDropdown.Item href="contactus">Contact Us</NavDropdown.Item>

@@ -5,13 +5,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
 *{
-  background-color: #fff;
+  /* background-color: rgb(11, 21, 36); */
   list-style-type: none;
   text-decoration: none;
 }
 
 
 .home-container {
+
     display: flex;
     flex-wrap: wrap;
     flex-direction:row;
@@ -21,7 +22,8 @@
     padding-top: 50px;
     padding-bottom: 10px;
     width: 90%;
-    max-width: 1000px;
+    max-width: 70%;
+    /* background-color: rgb(11, 21, 36); */
   }
   .home-content{
     width: 50%;
@@ -37,8 +39,8 @@
   font-weight: bold;
 }
 .home-content p{
-  color: darkgray;
-  font-size: 1.3rem;
+  color: rgb(40, 39, 39);
+  font-size: 1rem;
 }
 .home-desktop-img{
   width: 100%;
@@ -123,13 +125,13 @@
 .services-container{
   padding: 1rem 2rem;
   margin: 1rem;
-  background-color: aliceblue;
+  background-color: rgb(11, 21, 36);
 }
 .services-container h3{
   font-size: 2rem;
   color:#081F62;
   font-weight: bold;
-  background-color: aliceblue;
+  background-color: rgb(11, 21, 36);
   
 }
 .service-cards-container{
@@ -138,7 +140,7 @@
   justify-content: center;
   align-items: center;
   padding-top: 2rem;
-  background-color: aliceblue;
+  background-color: rgb(11, 21, 36);
 }
 .service-card{
   display: flex;
@@ -147,7 +149,7 @@
   gap:1rem;
   width: 40%;
   margin: 1rem;
-  background: aliceblue;
+background: transparent;
 }
 .service-card .service-card-content{
   width: 50%;
@@ -155,17 +157,20 @@
 }
 .service-card .service-card-content h4{
   font-size: 1.3rem;
-  color: rgb(72, 78, 80);
+  color: white;
   font-weight: bold;
   background-color: transparent;
 }
 p{
   background-color: transparent;
+  color: white;
 }
 .service-img{
   border-radius: 18px;
   width:230px;
   height:230px;
+  background: transparent;
+  
 }
 
 /*customer css*/

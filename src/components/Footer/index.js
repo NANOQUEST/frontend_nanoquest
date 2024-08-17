@@ -8,7 +8,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react
 const sections=[
   {
     title:"Quick Links",
-    items:['Home','Courses','Blog','AboutUs','Teams','Careers']
+    items:['Courses','Blog','AboutUs','Teams','Careers']
   },
   {
     title:"Company",
@@ -23,7 +23,7 @@ const socialicons=[
   },
   {
     icon:FaInstagram,
-    link:"https://www.instagram.com/nanoquest",
+    link:"https://www.instagram.com/nanoquesttech/?locale=us&hl=am-et",
   },
   {
     icon:FaYoutube,
@@ -52,16 +52,25 @@ function Footer() {
                 <h6 className='font-bold uppercase pt-2 bg-transparent'>{item.title}</h6>
                 <ul className='bg-slate-900 flex-start flex flex-col'>
                   {item.items.map((it,i)=>(
+                    
+                    <div>
+                    
                     <Link to={`/${it.toLowerCase()}`} className='no-underline hover:no-underline'>
                     <li key={i} className=' bg-slate-900 py-1 text-gray-500 hover:text-white cursor-pointer'>
                       {it}
                     </li>
                     </Link>
+                    </div>
+
+                    
                   ))}
                 </ul>
               </div>
             ))
           }
+
+
+          
           <div className="bg-transparent">
             <h6 className='font-bold uppercase pt-2 bg-transparent'>Contact Us</h6>
             <div className='bg-transparent'>

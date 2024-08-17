@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import NavBar from '../Navbar';
 import './index.css';
 import Footer from '../Footer';
+import logo from '../../assets/NqLogo.png'
+import { Navbar } from 'react-bootstrap';
 
 const Cart = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
@@ -71,7 +73,7 @@ const Cart = () => {
         currency,
         name: "NANOQUEST LLP",
         description: "Test Transaction",
-        image: "https://res.cloudinary.com/ajaymedidhi7/image/upload/v1706082314/MicrosoftTeams-image_1_tiacii.jpg",
+        image: {logo},
         order_id: order.id,
         handler: async function (response) {
           const body = { ...response };
@@ -157,7 +159,7 @@ const Cart = () => {
 
   return (
     <div className="min-h-screen">
-      
+
       <div className="pt-20 mx-auto max-w-6xl px-4">
         <h2 className="text-gray-800 text-2xl text-center mb-6">Bag Your Skills</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
