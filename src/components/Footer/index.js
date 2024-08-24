@@ -12,7 +12,7 @@ const sections=[
   },
   {
     title:"Company",
-    items:["ContactUs","Privacy Policy","Terms and Conditions","Refund and Cancellation"]
+    items:["ContactUs","Privacy-Policy","Terms-and-Conditions","Refund-and-Cancellation"]
   }
 ]
 

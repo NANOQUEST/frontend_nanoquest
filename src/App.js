@@ -29,6 +29,7 @@ const App = () => {
   const addToCart = (course) => {
     setCartCourses([...cartCourses, course]);
   };
+  const userEmail = localStorage.getItem("email");
 
   return (
     <BrowserRouter>
@@ -53,7 +54,7 @@ const App = () => {
           <Route exact path="/subcourse/:id" element={<SubCourse />} />
           <Route path="*" element={<NotFound status={404} />} />
         </Routes>
-        <FixedButton></FixedButton>
+        {userEmail && <FixedButton />}
         <Footer />
       </div>
     </BrowserRouter>

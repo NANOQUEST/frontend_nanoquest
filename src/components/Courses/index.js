@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../Loader'; 
 import './index.css';
-import Footer from '../Footer';
+
 
 const Courses = () => {
   const [totalData, setTotalData] = useState(null); 

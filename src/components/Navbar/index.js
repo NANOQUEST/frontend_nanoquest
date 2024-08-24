@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,7 @@ const NavBar = ({ toggleLoginPopup,category }) => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const token = localStorage.getItem("token");
   const userEmail = localStorage.getItem("email");
+  const navigate = useNavigate()
 
   const fetchUserData = async () => {
     try {
@@ -68,6 +69,16 @@ const NavBar = ({ toggleLoginPopup,category }) => {
     }
   }, [token, userEmail]);
 
+  // const skill =()=>{
+  //   const userEmail = localStorage.getItem("email");
+  //   if(userEmail){
+  //     navigate('/courses')
+  //   } else{
+  //     toggleLoginPopup(true)
+  //   }
+
+  // }
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='navbar-container fixed-top bg-white' style={{ paddingLeft: '80px', paddingRight: '80px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
       <Navbar.Brand href="/">
@@ -77,20 +88,34 @@ const NavBar = ({ toggleLoginPopup,category }) => {
       <Navbar.Collapse id="responsive-navbar-nav" style={{ backgroundColor: "transparent" }}>
         <Nav className="mr-auto" style={{ backgroundColor: "transparent" }}>
           <Nav.Link href="/" className="nav-link" active={location.pathname === "/"}>Home</Nav.Link>
-          {/* <Nav.Link href="courses" className="nav-link" active={location.pathname === "/courses"}>Skills</Nav.Link> */}
-           <NavDropdown title= 'Skills ' id='collasible-nav-dropdown' style={{background:"transparent"}}>
+
+          <NavDropdown
+        title='Skills and sector'
+        id='collasible-nav-dropdown'
+        style={{ background: "transparent" }}
+        className={location.pathname === '/courses' ? 'active' : ''}
+      >
+        {localStorage.getItem("email") ? (
+          <>
             <NavDropdown.Item href=''>BFSI</NavDropdown.Item>
             <NavDropdown.Item href=''>IT-ITES</NavDropdown.Item>
-            <NavDropdown.Item href=''>Animation </NavDropdown.Item>
+            <NavDropdown.Item href=''>Animation</NavDropdown.Item>
             <NavDropdown.Item href=''>Science</NavDropdown.Item>
             <NavDropdown.Item href=''>Arts</NavDropdown.Item>
             <NavDropdown.Item href=''>Soft Skills</NavDropdown.Item>
             <NavDropdown.Item href=''>Entrepreneur</NavDropdown.Item>
             <NavDropdown.Item href=''>Digital Marketing</NavDropdown.Item>
             <NavDropdown.Item href="/courses" className={location.pathname === '/courses' ? 'active' : ''}>
-                    View All
-                </NavDropdown.Item>
-           </NavDropdown>
+              View All
+            </NavDropdown.Item>
+          </>
+        ) : (
+          <NavDropdown.Item className='bg-slate-900' onClick={() => toggleLoginPopup(true)}>
+            Login to see the skills
+          </NavDropdown.Item>
+        )}
+      </NavDropdown>
+
 
 
           <NavDropdown title="Company" id="collasible-nav-dropdown" style={{ backgroundColor: "transparent" }}>
@@ -149,9 +174,6 @@ const NavBar = ({ toggleLoginPopup,category }) => {
                 <button className='btn-login' onClick={() => toggleLoginPopup(true)}>
                   Register for New Skills
                 </button>
-                <a href="https://canvas.instructure.com/login/canvas" target="_blank" className='btn-login ml-2'>
-                  LMS
-                </a>
               </li>
             )}
           </Nav.Link>

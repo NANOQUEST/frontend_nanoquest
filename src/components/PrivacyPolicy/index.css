@@ -1,6 +1,6 @@
 .privacy-policy-container {
     animation: fadeIn 1s ease-in-out;
-    padding: 1rem;
+    padding: 3rem;
     margin: 2rem 4rem;
     font-family: "Roboto";
 }
@@ -14,13 +14,18 @@
     animation: slideInUp 1s ease-in-out;
     animation-fill-mode: both;
     animation-delay: 0.5s;
+    
 }
 
 .section h2{
-    font-size: 1.5rem;
+    
     font-weight: bold;
     color: black;
     margin-top: 1rem;
+}
+.section p{
+    color: rgb(16, 92, 95);
+    font-size: 15px;
 }
 @keyframes fadeIn {
     from {
