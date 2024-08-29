@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faPhoneAlt,faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../assets/NqLogo.png'
@@ -15,7 +15,26 @@ const NavBar = ({ toggleLoginPopup,category }) => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const token = localStorage.getItem("token");
   const userEmail = localStorage.getItem("email");
-  const navigate = useNavigate()
+  
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Base and hover styles
+  const baseStyle = {
+      backgroundColor: "#003366",
+      color: 'white',
+      padding: '10px',
+      cursor: 'pointer',
+  };
+
+  const hoverStyle = {
+      backgroundColor: "#081F62", // Change to the desired hover color
+      color: 'white', // Change to the desired hover text color 
+  };
+
+
+
+
+
 
   const fetchUserData = async () => {
     try {
@@ -69,42 +88,36 @@ const NavBar = ({ toggleLoginPopup,category }) => {
     }
   }, [token, userEmail]);
 
-  // const skill =()=>{
-  //   const userEmail = localStorage.getItem("email");
-  //   if(userEmail){
-  //     navigate('/courses')
-  //   } else{
-  //     toggleLoginPopup(true)
-  //   }
 
-  // }
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className='navbar-container fixed-top bg-white' style={{ paddingLeft: '80px', paddingRight: '80px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
       <Navbar.Brand href="/">
         <img className='main-logo' src={logo} alt="Logo" title="logo" />
       </Navbar.Brand>
+
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav" style={{ backgroundColor: "transparent" }}>
+
         <Nav className="mr-auto" style={{ backgroundColor: "transparent" }}>
           <Nav.Link href="/" className="nav-link" active={location.pathname === "/"}>Home</Nav.Link>
 
           <NavDropdown
-        title='Skills and sector'
+        title='Skill'
         id='collasible-nav-dropdown'
         style={{ background: "transparent" }}
         className={location.pathname === '/courses' ? 'active' : ''}
       >
         {localStorage.getItem("email") ? (
           <>
-            <NavDropdown.Item href=''>BFSI</NavDropdown.Item>
-            <NavDropdown.Item href=''>IT-ITES</NavDropdown.Item>
-            <NavDropdown.Item href=''>Animation</NavDropdown.Item>
-            <NavDropdown.Item href=''>Science</NavDropdown.Item>
-            <NavDropdown.Item href=''>Arts</NavDropdown.Item>
-            <NavDropdown.Item href=''>Soft Skills</NavDropdown.Item>
-            <NavDropdown.Item href=''>Entrepreneur</NavDropdown.Item>
-            <NavDropdown.Item href=''>Digital Marketing</NavDropdown.Item>
+            <NavDropdown.Item href='' style={{...hoverStyle}}>BFSI</NavDropdown.Item>
+            <NavDropdown.Item href='' className=''>IT-ITES</NavDropdown.Item>
+            <NavDropdown.Item href='' className=''>Animation</NavDropdown.Item>
+            <NavDropdown.Item href='' className=''>Science</NavDropdown.Item>
+            <NavDropdown.Item href='' className=''>Arts</NavDropdown.Item>
+            <NavDropdown.Item href='' className=''>Soft Skills</NavDropdown.Item>
+            <NavDropdown.Item href='' className=''>Entrepreneur</NavDropdown.Item>
+            <NavDropdown.Item href='' className=''>Digital Marketing</NavDropdown.Item>
             <NavDropdown.Item href="/courses" className={location.pathname === '/courses' ? 'active' : ''}>
               View All
             </NavDropdown.Item>
@@ -116,6 +129,33 @@ const NavBar = ({ toggleLoginPopup,category }) => {
         )}
       </NavDropdown>
 
+          
+      <NavDropdown
+        title='Products'
+        id='collasible-nav-dropdown'
+        style={{ background: "transparent" }}
+        className={location.pathname === '/courses' ? 'active' : ''}
+      >
+        {localStorage.getItem("email") ? (
+          <>
+            <NavDropdown.Item href=''>NAST</NavDropdown.Item>
+            <NavDropdown.Item href=''>Natage</NavDropdown.Item>
+            <NavDropdown.Item href=''>Napin</NavDropdown.Item>
+            <NavDropdown.Item href=''>Elytics</NavDropdown.Item>
+            <NavDropdown.Item href=''>Skill Intelligence</NavDropdown.Item>
+            
+          </>
+        ) : (
+          <NavDropdown.Item className='bg-slate-900' onClick={() => toggleLoginPopup(true)}>
+            Login to see the skills
+          </NavDropdown.Item>
+        )}
+      </NavDropdown>
+
+
+
+
+
 
 
           <NavDropdown title="Company" id="collasible-nav-dropdown" style={{ backgroundColor: "transparent" }}>
@@ -125,6 +165,8 @@ const NavBar = ({ toggleLoginPopup,category }) => {
             <NavDropdown.Item href="teams">Teams</NavDropdown.Item>
           </NavDropdown>
         </Nav>
+
+
         <Nav style={{ backgroundColor: "transparent" }}>
           <Nav.Link href="#">
             {userEmail ? (
@@ -183,6 +225,14 @@ const NavBar = ({ toggleLoginPopup,category }) => {
               040-49170923
             </span>
           </Nav.Link>
+           
+          <Nav.Link id="tooltip">
+            <FontAwesomeIcon icon={faEnvelope} />
+            <span id="tooltiptext">
+            support@nanoquesttech.in
+            </span>
+          </Nav.Link>
+
         </Nav>
       </Navbar.Collapse>
     </Navbar>

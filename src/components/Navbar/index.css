@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
+    
 }
 .main-logo {
     width: 40px;
@@ -12,12 +13,15 @@
     padding: 0 100px;
 }
 
-
+.dropdown-item:hover{
+background-color: #051747;
+color: white;
+}
 
 .profiledropdown {
     display: none;
     position: absolute;
-    background-color: #fff;
+    background-color: #d64a4a;
     padding: 20px;
     border-radius: 5px;
     top: 70%;
@@ -29,6 +33,7 @@
 
 .nav-item:hover .profiledropdown {
     display: block;
+    
 }
 
 

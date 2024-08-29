@@ -4,11 +4,9 @@ import { FaTrash, FaShoppingCart } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRupeeSign } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import NavBar from '../Navbar';
 import './index.css';
-import Footer from '../Footer';
 import logo from '../../assets/NqLogo.png'
-import { Navbar } from 'react-bootstrap';
+
 
 const Cart = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);

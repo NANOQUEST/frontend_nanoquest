@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import blog1 from '../../assets/logo.png';
 import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 import { auth, signInWithGoogle, logInWithEmailAndPassword, registerWithEmailAndPassword } from '../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '../../assets/NqLogo.png'
-import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
 
 const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
@@ -83,8 +81,9 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
     try {
       await signInWithGoogle();
       toggleLoginPopup(false);
-      localStorage.setItem("login",true)
+      localStorage.setItem("userEmail ",true)
       toast.success('Login with Google successful');
+      toggleLoginPopup(false)
 
     } catch (error) {
       console.error('Firebase login failed:', error);

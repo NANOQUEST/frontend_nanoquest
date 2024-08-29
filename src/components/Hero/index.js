@@ -19,9 +19,7 @@ const Hero = ({toggleLoginPopup}) => {
     
     const navigate = useNavigate()
     
-    useEffect(() => {
-        setStartTyping(true);
-    }, []);
+   
 
  const blognavigate =(event)=>{
     const btnid = event.target.id
@@ -34,30 +32,48 @@ const Hero = ({toggleLoginPopup}) => {
     
 
 
+     // Start typing effect when component mounts
+     useEffect(() => {
+        setStartTyping(true);
+    }, []);
+
+    // Typing effect logic
     useEffect(() => {
-        const text = 'Nanoquest';
+        const texts = ['Nanoquest', 'skill learning platform'];
+        let currentTextIndex = 0;
         let index = 0;
-        let intervalId;
+        let typingIntervalId;
+        let clearTextTimeoutId;
+
+        const typeText = () => {
+            typingIntervalId = setInterval(() => {
+                if (index <= texts[currentTextIndex].length) {
+                    setTypedText(texts[currentTextIndex].slice(0, index));
+                    index++;
+                } else {
+                    clearInterval(typingIntervalId);
+                    clearTextTimeoutId = setTimeout(() => {
+                        index = 0;
+                        setTypedText('');
+                        currentTextIndex = (currentTextIndex + 1) % texts.length;
+                        typeText(); // Start typing the next text
+                    }, 1000);
+                }
+            }, 300);
+        };
 
         if (startTyping) {
-            const typeText = () => {
-                intervalId = setInterval(() => {
-                    if (index <= text.length) {
-                        setTypedText(text.slice(0, index));
-                        index++;
-                    } else {
-                        setTimeout(() => {
-                            index = 0;
-                            setTypedText('');
-                        }, 1000);
-                    }
-                }, 300);
-            };
             typeText();
         }
-        return () => clearInterval(intervalId);
+
+        return () => {
+            clearInterval(typingIntervalId);
+            clearTimeout(clearTextTimeoutId);
+        };
     }, [startTyping]);
-     
+
+
+
 
     function checkLocalStorage() {
         const emailExists = localStorage.getItem("email");
@@ -101,7 +117,7 @@ const Hero = ({toggleLoginPopup}) => {
                         }}
                         className="home-description text-lg md:text-xl lg:text-2xl mt-4"
                     >
-                        Explore our wide range of skill courses to enhance your knowledge and expertise. Learn at your own pace with our elearning platform.
+                        Explore our wide range of skill courses to enhance your knowledge and expertise. Learn at your own pace with our E-learning platform.
                     </motion.p>
                     <motion.button
                         initial={{ x: 100, opacity: 0 }}
@@ -316,7 +332,7 @@ const Hero = ({toggleLoginPopup}) => {
                                 }}
                                 className="text-xl font-semibold"
                             >
-                                Community Support
+                                Personalised and invent new learning expierence
                             </motion.h4>
                             <motion.p
                                 initial={{ x: -100, opacity: 0 }}
@@ -330,7 +346,7 @@ const Hero = ({toggleLoginPopup}) => {
                                 }}
                                 className="text-base"
                             >
-                                Connect with a community of learners and experts to share ideas and get support.
+                                Personalized skill learner expirence with high relevant content and products
                             </motion.p>
                         </div>
                     </div>
