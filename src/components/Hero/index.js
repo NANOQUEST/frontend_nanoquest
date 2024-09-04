@@ -10,6 +10,7 @@ import wcu2 from '../../assets/wcu-2.avif';
 import Carousel from '../Carousel';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'framer-motion';
+import StaticNumber from '../StaticNumber';
 // import LoginPopup from '../LoginPopup';
 // import ContactUs from '../Contactus';
 
@@ -154,7 +155,7 @@ const Hero = ({toggleLoginPopup}) => {
                     />
                 </div>
             </div>
-
+            <StaticNumber></StaticNumber>
             <h2 className='mt-20 text-center text-gray-500 text-2xl md:text-3xl lg:text-4xl'>Trending Skills</h2>
             <Carousel />
 
