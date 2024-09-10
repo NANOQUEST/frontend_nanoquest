@@ -15,6 +15,7 @@ const NavBar = ({ toggleLoginPopup,category }) => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const token = localStorage.getItem("token");
   const userEmail = localStorage.getItem("email");
+  const navigate = useNavigate();
   
   const [isHovered, setIsHovered] = useState(false);
 
@@ -103,7 +104,7 @@ const NavBar = ({ toggleLoginPopup,category }) => {
           <Nav.Link href="/" className="nav-link" active={location.pathname === "/"}>Home</Nav.Link>
 
           <NavDropdown
-        title='Skill'
+        title='Skills'
         id='collasible-nav-dropdown'
         style={{ background: "transparent" }}
         className={location.pathname === '/courses' ? 'active' : ''}
@@ -151,13 +152,6 @@ const NavBar = ({ toggleLoginPopup,category }) => {
           </NavDropdown.Item>
         )}
       </NavDropdown>
-
-
-
-
-
-
-
           <NavDropdown title="Company" id="collasible-nav-dropdown" style={{ backgroundColor: "transparent" }}>
             <NavDropdown.Item href="aboutus">About Us</NavDropdown.Item>
             <NavDropdown.Item href="contactus">Contact Us</NavDropdown.Item>
@@ -166,6 +160,18 @@ const NavBar = ({ toggleLoginPopup,category }) => {
           </NavDropdown>
         </Nav>
 
+
+        
+       
+    
+        <button onClick={()=>{navigate('/webinars')}} className="bg-red-600 text-white px-4 py-2 rounded-md custom-text-size animate-blink transform -translate-x-2 font-sans">
+  Webinars
+</button>
+
+
+    
+
+      
 
         <Nav style={{ backgroundColor: "transparent" }}>
           <Nav.Link href="#">

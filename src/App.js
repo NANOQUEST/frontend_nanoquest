@@ -22,6 +22,7 @@ import Teams from './components/Teams';
 import Careers from './components/Careers';
 import NotFound from './components/NotFound';
 import FixedButton from './components/FixedButton';
+import RecipeReviewCard from './components/RecipeReviewCard';
 
 const App = () => {
   const [cartCourses, setCartCourses] = useState([]);
@@ -53,8 +54,9 @@ const App = () => {
           <Route exact path="/careers" element={<Careers />} />
           <Route exact path="/subcourse/:id" element={<SubCourse />} />
           <Route path="*" element={<NotFound status={404} />} />
+          <Route path="/webinars" element={<RecipeReviewCard/>} />
         </Routes>
-        {userEmail && <FixedButton />}
+        
         <Footer />
       </div>
     </BrowserRouter>
