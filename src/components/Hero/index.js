@@ -11,6 +11,7 @@ import Carousel from '../Carousel';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'framer-motion';
 import StaticNumber from '../StaticNumber';
+import RecipeReviewCard from '../RecipeReviewCard';
 // import LoginPopup from '../LoginPopup';
 // import ContactUs from '../Contactus';
 
@@ -156,6 +157,7 @@ const Hero = ({toggleLoginPopup}) => {
                 </div>
             </div>
             <StaticNumber></StaticNumber>
+            <RecipeReviewCard></RecipeReviewCard>
             <h2 className='mt-20 text-center text-gray-500 text-2xl md:text-3xl lg:text-4xl'>Trending Skills</h2>
             <Carousel />
 

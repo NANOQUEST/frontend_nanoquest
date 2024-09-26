@@ -164,9 +164,7 @@ const NavBar = ({ toggleLoginPopup,category }) => {
         
        
     
-        <button onClick={()=>{navigate('/webinars')}} className="bg-red-600 text-white px-4 py-2 rounded-md custom-text-size animate-blink transform -translate-x-2 font-sans">
-  Webinars
-</button>
+  
 
 
     
