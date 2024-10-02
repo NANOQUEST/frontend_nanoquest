@@ -89,7 +89,7 @@ const CounterProjects = () => {
 
 const Dashboard = () => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-around' , position:"relative", top:"26px", marginBottom:"24px"}}>
       <div style={{ textAlign: 'center' }}>
         <h3>Products</h3>
         <CounterProducts />

@@ -89,7 +89,7 @@ const Hero = ({toggleLoginPopup}) => {
     
 
     return (
-        <div className="px-4 md:px-8 lg:px-16">
+        <div className="px-4 md:px-8 lg:px-16 relative top-8 my-16">
             <div className="home-container mt-3 flex flex-col lg:flex-row items-center justify-between">
                 <div className="home-content ">
                     <motion.h1
@@ -138,7 +138,7 @@ const Hero = ({toggleLoginPopup}) => {
                         Upgrade Your Skills
                     </motion.button>
                 </div>
-                <div className='desktop-img-container mt-6 lg:mt-0'>
+                {/* <div className='desktop-img-container mt-6 lg:mt-0'>
                     <motion.img
                         initial={{ x: 100, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
@@ -154,7 +154,7 @@ const Hero = ({toggleLoginPopup}) => {
                         className="home-desktop-img w-full lg:w-1/2 h-auto rounded-lg shadow-md"
                         loading="lazy"
                     />
-                </div>
+                </div> */}
             </div>
             <StaticNumber></StaticNumber>
             <RecipeReviewCard></RecipeReviewCard>
