@@ -1,6 +1,6 @@
 import React, {useState } from "react";
 import { Link} from "react-router-dom";
-import axios from 'axios';
+import axios from '../../axios';
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 
@@ -15,7 +15,7 @@ function Resetpassword() {
     }
     try{
       alert("Instruction has been sent to your mail");
-      const res=await axios.post("http://localhost:5000/user/forgotpassword",{email})
+      const res=await axios.post("/user/forgotpassword",{email})
       if(res.data.success === true){
         navigate('/login');
       }

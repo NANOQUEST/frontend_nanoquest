@@ -1,42 +1,42 @@
 import React from "react";
 import { useContext, useEffect, useState } from "react";
-import {auth} from '.././../Firebase/firebase';
+import { auth } from ".././../Firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-const AuthContext=React.createContext();
 
-export function useAuth(){
-    return useContext(AuthContext)
+const AuthContext = React.createContext();
+
+export function useAuth() {
+    return useContext(AuthContext);
 }
 
-export function AuthProvider({children}){
-    const [currentUser,setCurrentUser]=useState(null);
-    const [userLoggedIn,setUserLoggedIn]=useState(false);
-    const [loading,setLoading]=useState(true);
+export function AuthProvider({ children }) {
+    const [currentUser, setCurrentUser] = useState(null);
+    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
-        const unsubscribe=onAuthStateChanged(auth,initializeUser);
-        return unsubscribe
-    },[])
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, initializeUser);
+        return unsubscribe;
+    }, []);
 
-    async function initializeUser(user){
-        if(user){
-            setCurrentUser({...user});
+    async function initializeUser(user) {
+        if (user) {
+            setCurrentUser({ ...user });
             setUserLoggedIn(true);
-        }
-        else{
+        } else {
             setCurrentUser(null);
             setUserLoggedIn(false);
         }
-        setLoading(false)
+        setLoading(false);
     }
-    const value={
+    const value = {
         currentUser,
         userLoggedIn,
-        loading
-    }
-    return(
+        loading,
+    };
+    return (
         <AuthContext.Provider value={value}>
             {!loading && children}
         </AuthContext.Provider>
-    )
+    );
 }

@@ -1,10 +1,7 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-    
+* {
+    font-family: "Poppins", sans-serif;
 }
+
 .main-logo {
     width: 40px;
     height: 40px;
@@ -13,9 +10,19 @@
     padding: 0 100px;
 }
 
-.dropdown-item:hover{
-background-color: #051747;
-color: white;
+.custom-navbar {
+    padding-inline: 1em !important;
+    @media (min-width: 600px) {
+        padding-inline: 2em !important;
+    }
+    @media (min-width: 900px) {
+        padding-inline: 2.7em !important;
+    }
+}
+
+.dropdown-item:hover {
+    background-color: #051747;
+    color: white;
 }
 
 .profiledropdown {
@@ -28,41 +35,31 @@ color: white;
     right: 0;
     width: 300px;
     height: auto;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .nav-item:hover .profiledropdown {
     display: block;
-    
 }
 
 @keyframes blink {
-    0%, 100% {
-      opacity: 1;
+    0%,
+    100% {
+        opacity: 1;
     }
     50% {
-      opacity: 0;
+        opacity: 0;
     }
-  }
-  
-  .animate-blink {
+}
+
+.animate-blink {
     animation: blink 2s infinite;
-  }
-  
-  .custom-text-size {
+}
+
+.custom-text-size {
     font-size: 18px; /* Replace 18px with your desired size */
-  }
-  
-
-
-
-
-
-
-
-
-
-
+}
 
 /*profile card css*/
 .profile-header {
@@ -75,9 +72,9 @@ color: white;
     width: 60px;
     height: 60px;
     padding: 1rem;
-    margin: .5rem;
+    margin: 0.5rem;
     border-radius: 10px;
-    border: 3px solid #081F62;
+    border: 3px solid #081f62;
     text-align: center;
     font-weight: bold;
 }
@@ -87,7 +84,7 @@ color: white;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-top: .7rem;
+    margin-top: 0.7rem;
     color: orange;
 }
 
@@ -104,78 +101,73 @@ color: white;
 .profile-btn {
     border: 1px solid lightgray;
     text-align: center;
-    padding: .2rem;
-    margin-bottom: .2rem;
+    padding: 0.2rem;
+    margin-bottom: 0.2rem;
     font-size: 1rem;
-    color:#081F62 ;
+    color: #081f62;
 }
-.profile-btn:hover{
+.profile-btn:hover {
     background: #051747;
-    color:white;
+    color: white;
 }
-.user-icon{
-    color:#081F62;
-    padding-top: .5rem;
-    
+.user-icon {
+    color: #081f62;
+    padding-top: 0.5rem;
 }
 
-.btn-login{
-    background-color: #081F62;
+.btn-login {
+    background-color: #081f62;
     color: #fff;
-    padding: .7rem;
+    padding: 0.7rem;
     border-radius: 5px;
     text-decoration: none;
 }
-.btn-login:hover{
+.btn-login:hover {
     background: transparent;
-    color:#081F62;
+    color: #081f62;
     border-bottom: none;
     text-decoration: none;
 }
 
 /*tooltip css*/
- #tooltip {
-     position: relative;
-     cursor: pointer;
-     padding-top: 1rem;
-     font-weight: bold;
- }
+#tooltip {
+    position: relative;
+    cursor: pointer;
+    padding-top: 1rem;
+    font-weight: bold;
+}
 
- #tooltiptext {
-     position: absolute;
-     left: 0;
-     transform: translateX(-50%);
-     background-color: #081F62;
-     color: #fff;
-     white-space: nowrap;
-     padding: 5px 15px;
-     border-radius: 7px;
-     visibility: hidden;
-     opacity: 0;
-     transition: opacity 0.5s ease;
- }
+#tooltiptext {
+    position: absolute;
+    left: 0;
+    transform: translateX(-50%);
+    background-color: #081f62;
+    color: #fff;
+    white-space: nowrap;
+    padding: 5px 15px;
+    border-radius: 7px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
 
- #tooltiptext::before {
-     content: "";
-     position: absolute;
-     left: 55%;
-     bottom: 100%;
-     transform: translateX(-50%);
-     border: 15px solid;
-     border-color: transparent transparent #081F62 transparent;
- }
+#tooltiptext::before {
+    content: "";
+    position: absolute;
+    left: 55%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    border: 15px solid;
+    border-color: transparent transparent #081f62 transparent;
+}
 
- #tooltip:hover #tooltiptext {
-     bottom: -80%;
-     visibility: visible;
-     opacity: 1;
- }
+#tooltip:hover #tooltiptext {
+    bottom: -80%;
+    visibility: visible;
+    opacity: 1;
+}
 
- .enroll-text p {
+.enroll-text p {
     display: inline;
     white-space: nowrap;
-  }
-  
-
-
-  
+}

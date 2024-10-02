@@ -1,16 +1,14 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import p1 from "../assets/BIG DATA F1.png";
-import p2 from "../assets/python 3.png";
+import bigDataImg from "../assets/big-data.png";
+import blockchainImg from "../assets/blockchain-and-fintech.png";
+import { motion } from "framer-motion";
 
 export default function RecipeReviewCard() {
     const data = [
         {
-            id: 1,
             name: "Big Data",
             description:
                 "Get the best Insigths in the New Emerging technology in the World of Data Science",
-            img: p1,
+            img: bigDataImg,
             url: "https://meet.zoho.in/MGLuu5aKiO",
         },
         // {
@@ -20,13 +18,12 @@ export default function RecipeReviewCard() {
         //     img: p2,
         //     url: "https://meet.zoho.in/2CC995Cfj9",
         // },
-        // {
-        //   id:3,
-        //   name:"Fundamentals of Fintech and Blockchain",
-        //   description:"Know the insights of Fintech and Blockchain",
-        //   img:p2,
-        //   url:"",
-        // }
+        {
+            name: "Fundamentals of Fintech and Blockchain",
+            description: "Know the insights of Fintech and Blockchain",
+            img: blockchainImg,
+            url: "https://meet.zoho.in/6vwA26klUZ",
+        },
     ];
 
     const handleClick = (url) => {
@@ -34,39 +31,44 @@ export default function RecipeReviewCard() {
     };
 
     return (
-        <div>
-            {" "}
-            <h1 className=" flex justify-center mt-12"> Webinars</h1>
-            <div className="flex justify-center mt-16 top-5 p-6">
-                {data.map((item) => (
-                    <Card
-                        key={item.id}
-                        style={{
-                            width: "18rem",
-                            backgroundColor: "rgb(11, 21, 36)",
-                            margin: "24px",
-                        }}
+        <div className="my-20">
+            <h1 className="text-center text-3xl font-semibold text-gray-900  text-capitalize">
+                upcoming webinars
+            </h1>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 justify-items-center p-5 md:p-4 overflow-hidden">
+                {data.map((item, index) => (
+                    <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: 25 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="rounded-xl shadow-md overflow-hidden w-full max-w-sm"
                     >
-                        <Card.Img
-                            variant="top"
+                        <img
+                            className="w-full object-cover"
                             src={item.img}
                             alt={item.name}
                         />
-                        <Card.Body>
-                            <Card.Title style={{ color: "white" }}>
-                                {item.name}
-                            </Card.Title>
-                            <Card.Text style={{ padding: "12px" }}>
-                                {item.description}
-                            </Card.Text>
-                            <Button
+
+                        <div className="p-6 h-56 flex flex-col justify-between">
+                            <div>
+                                <h2 className="text-xl font-bold text-black">
+                                    {item.name}
+                                </h2>
+                                <p className="text-gray-400 mt-3">
+                                    {item.description}
+                                </p>
+                            </div>
+
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 w-full rounded focus:outline-none"
                                 onClick={() => handleClick(item.url)}
-                                variant="primary"
                             >
                                 Register NOW!!
-                            </Button>
-                        </Card.Body>
-                    </Card>
+                            </button>
+                        </div>
+                    </motion.div>
                 ))}
             </div>
         </div>

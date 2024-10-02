@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
@@ -44,7 +44,7 @@ const RegisterBanner = () => {
 
     e.preventDefault();
     try {
-      const response = await axios.post('https://llp-qxsy.onrender.com/user/register', { name, mobile, skill });
+      const response = await axios.post('/user/register', { name, mobile, skill });
       console.log(response.data); 
       alert('Successfully registered!');
       setName('');
