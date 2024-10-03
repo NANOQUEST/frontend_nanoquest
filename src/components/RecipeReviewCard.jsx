@@ -25,7 +25,6 @@ export default function RecipeReviewCard() {
             url: "https://meet.zoho.in/6vwA26klUZ",
         },
     ];
-
     const handleClick = (url) => {
         window.location.href = url; // Google Form URL
     };
