@@ -14,7 +14,7 @@ const SubCourse = () => {
 
     useEffect(() => {
         fetchSubCourses();
-    }, [{ id }]);
+    }, [id]);
 
     const addToCart = async (course_id, course_name, course_price) => {
         const email = localStorage.getItem("email");
@@ -38,18 +38,15 @@ const SubCourse = () => {
 
     const fetchSubCourses = async () => {
         try {
-            const response = await axios.get(`/course/getsubcourses/${id}`);
-            const categoryDetails = await axios.get(
-                `/course/getcoursebyid/${id}`
-            );
-            setCategory(categoryDetails.data);
-            if (response.status === 200) {
-                setSubCourses(response.data);
-            } else {
-                console.error("Failed to fetch subcourses");
-            }
+            const [subCoursesResponse, categoryResponse] = await Promise.all([
+                axios.get(`/course/getsubcourses/${id}`),
+                axios.get(`/course/getcoursebyid/${id}`),
+            ]);
+
+            setSubCourses(subCoursesResponse.data);
+            setCategory(categoryResponse.data);
         } catch (error) {
-            console.error("Error fetching subcourses:", error);
+            console.error("Error fetching data:", error);
         }
     };
 
