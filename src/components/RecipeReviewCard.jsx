@@ -30,7 +30,7 @@ export default function RecipeReviewCard() {
     };
 
     return (
-        <div className="my-20">
+        <div className="mt-20">
             <h1 className="text-center text-3xl font-semibold text-gray-900  text-capitalize">
                 upcoming webinars
             </h1>

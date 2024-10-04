@@ -152,11 +152,11 @@ const Hero = ({ toggleLoginPopup }) => {
                     </motion.button>
                 </div>
             </div>
-
             <StaticNumber />
 
             <RecipeReviewCard />
-            <div className="my-20">
+
+            <div className="mt-20">
                 <h2 className="text-center text-gray-500 text-2xl md:text-3xl lg:text-4xl">
                     Trending Skills
                 </h2>

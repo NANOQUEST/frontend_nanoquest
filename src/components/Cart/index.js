@@ -74,7 +74,7 @@ const Cart = () => {
             const order = response.data;
 
             const options = {
-                key: "rzp_test_NgGFz8D718klWM",
+                key: "rzp_live_nFbyXwX5uLy23R",
                 amount,
                 currency,
                 name: "NANOQUEST LLP",

@@ -14,7 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import logo from "../../assets/NqLogo.png";
 
-const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
+const LoginPopup = ({ toggleLoginPopup }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showSignIn, setShowSignIn] = useState(false);
     const [email, setEmail] = useState("");
@@ -38,7 +38,6 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
         const storedEmail = localStorage.getItem("email");
         if (storedEmail) {
             toggleLoginPopup(false);
-
             navigate("/");
         }
     }, [navigate, email]);
@@ -83,7 +82,6 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
     const handleFirebaseLogin = async () => {
         try {
             await signInWithGoogle();
-            toggleLoginPopup(false);
             localStorage.setItem("userEmail ", true);
             toast.success("Login with Google successful");
             toggleLoginPopup(false);
@@ -102,13 +100,14 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
 
         try {
             await registerWithEmailAndPassword(name, email, password); // Firebase registration
-            const response = await axios.post(
-                "/user/signup",
-                { name, email, password }
-            );
+            const response = await axios.post("/user/signup", {
+                name,
+                email,
+                password,
+            });
             console.log("Sign up successful:", response.data);
             setShowSignIn(!showSignIn);
-            LoginPopup(false);
+            toggleLoginPopup(false);
             toast.success("Sign up successful. Please log in.");
         } catch (err) {
             console.error("Sign up error:", err);
@@ -123,134 +122,125 @@ const LoginPopup = ({ toggleLoginPopup, loginPopup }) => {
     return (
         <>
             <ToastContainer />
-            {!loginPopup && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 overflow-y-auto pt-[140px]">
-                    <div className="relative h-auto w-[80%] sm:w-[80%] md:w-[50%] lg:w-[50%] xl:w-[30%] bg-white rounded-xl shadow-lg m-3">
-                        <button
-                            onClick={toggleLoginPopup}
-                            className="absolute top-2 right-2 text-black text-md hover:text-gray-900"
+            {/* {!loginPopup && ( */}
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 overflow-y-auto pt-[140px]">
+                <div className="relative h-auto w-[80%] sm:w-[80%] md:w-[50%] lg:w-[50%] xl:w-[30%] bg-white rounded-xl shadow-lg m-3">
+                    <button
+                        onClick={() => toggleLoginPopup(false)}
+                        className="absolute top-2 right-2 text-black text-md hover:text-gray-900"
+                    >
+                        &times;
+                    </button>
+                    <div className="p-5 sm:p-8 rounded-l">
+                        <div className="flex items-center mb-4">
+                            <img
+                                src={logo}
+                                alt="Logo"
+                                className="h-10 w-10 mr-2"
+                            />
+                            <h1 className="text-2xl font-bold">
+                                {showSignIn ? "Sign Up" : "Login"}
+                            </h1>
+                        </div>
+                        <form
+                            onSubmit={showSignIn ? handleSignUp : handleLogin}
                         >
-                            &times;
-                        </button>
-                        <div className="p-5 sm:p-8 rounded-l">
-                            <div className="flex items-center mb-4">
-                                <img
-                                    src={logo}
-                                    alt="Logo"
-                                    className="h-10 w-10 mr-2"
+                            <div className="mb-4">
+                                <label
+                                    htmlFor="email"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="mt-1 p-1 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-sm"
                                 />
-                                <h1 className="text-2xl font-bold">
-                                    {showSignIn ? "Sign Up" : "Login"}
-                                </h1>
                             </div>
-                            <form
-                                onSubmit={
-                                    showSignIn ? handleSignUp : handleLogin
-                                }
-                            >
+
+                            {showSignIn && (
                                 <div className="mb-4">
                                     <label
-                                        htmlFor="email"
-                                        className="block text-sm font-medium text-gray-700"
-                                    >
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        value={email}
-                                        onChange={(e) =>
-                                            setEmail(e.target.value)
-                                        }
-                                        className="mt-1 p-1 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-sm"
-                                    />
-                                </div>
-                                {showSignIn && (
-                                    <div className="mb-4">
-                                        <label
-                                            htmlFor="username"
-                                            className="block font-medium text-gray-700 text-sm"
-                                        >
-                                            Username
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="username"
-                                            value={name}
-                                            onChange={(e) =>
-                                                setName(e.target.value)
-                                            }
-                                            className="mt-1 p-1 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-sm"
-                                        />
-                                    </div>
-                                )}
-                                <div className="mb-4 relative">
-                                    <label
-                                        htmlFor="password"
+                                        htmlFor="username"
                                         className="block font-medium text-gray-700 text-sm"
                                     >
-                                        Password
+                                        Username
                                     </label>
                                     <input
-                                        type={
-                                            showPassword ? "text" : "password"
-                                        }
-                                        id="password"
-                                        value={password}
+                                        type="text"
+                                        id="username"
+                                        value={name}
                                         onChange={(e) =>
-                                            setPassword(e.target.value)
+                                            setName(e.target.value)
                                         }
                                         className="mt-1 p-1 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-sm"
                                     />
-                                    <button
-                                        type="button"
-                                        onClick={togglePasswordVisibility}
-                                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 pt-4"
-                                    >
-                                        {showPassword ? (
-                                            <FaEyeSlash />
-                                        ) : (
-                                            <FaEye />
-                                        )}
-                                    </button>
                                 </div>
-                                {err && (
-                                    <p className="text-red-500 text-sm mb-4">
-                                        {err}
-                                    </p>
-                                )}
-                                <button
-                                    type="submit"
-                                    className="w-full bg-blue-500 text-white py-1 rounded-full hover:bg-blue-600"
+                            )}
+                            <div className="mb-4 relative">
+                                <label
+                                    htmlFor="password"
+                                    className="block font-medium text-gray-700 text-sm"
                                 >
-                                    {showSignIn ? "Sign Up" : "Login"}
-                                </button>
-                                <p className="text-center text-gray-500 m-1 text-sm">
-                                    {showSignIn
-                                        ? "or sign up with"
-                                        : "or login with"}
-                                </p>
+                                    Password
+                                </label>
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    id="password"
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
+                                    className="mt-1 p-1 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent text-sm"
+                                />
                                 <button
                                     type="button"
-                                    className="w-full flex items-center justify-center bg-red-500 text-white py-1 rounded-full hover:bg-red-600"
-                                    onClick={handleFirebaseLogin}
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 pt-4"
                                 >
-                                    <FaGoogle className="mr-2 bg-transparent" />{" "}
-                                    Google
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>
-                                <p
-                                    className="text-gray-400 text-sm cursor-pointer hover:text-blue-500 mt-4"
-                                    onClick={() => setShowSignIn(!showSignIn)}
-                                >
-                                    {showSignIn
-                                        ? "Already have an account? Login here"
-                                        : "No Account? Create an account here"}
+                            </div>
+                            {err && (
+                                <p className="text-red-500 text-sm mb-4">
+                                    {err}
                                 </p>
-                            </form>
-                        </div>
+                            )}
+                            <button
+                                type="submit"
+                                className="w-full bg-blue-500 text-white py-1 rounded-full hover:bg-blue-600"
+                            >
+                                {showSignIn ? "Sign Up" : "Login"}
+                            </button>
+                            <p className="text-center text-gray-500 m-1 text-sm">
+                                {showSignIn
+                                    ? "or sign up with"
+                                    : "or login with"}
+                            </p>
+                            <button
+                                type="button"
+                                className="w-full flex items-center justify-center bg-red-500 text-white py-1 rounded-full hover:bg-red-600"
+                                onClick={handleFirebaseLogin}
+                            >
+                                <FaGoogle className="mr-2 bg-transparent" />{" "}
+                                Google
+                            </button>
+                            <p
+                                className="text-gray-400 text-sm cursor-pointer hover:text-blue-500 mt-4"
+                                onClick={() => setShowSignIn(!showSignIn)}
+                            >
+                                {showSignIn
+                                    ? "Already have an account? Login here"
+                                    : "No Account? Create an account here"}
+                            </p>
+                        </form>
                     </div>
                 </div>
-            )}
+            </div>
+            {/* )} */}
         </>
     );
 };

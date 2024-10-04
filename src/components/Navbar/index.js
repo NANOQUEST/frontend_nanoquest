@@ -16,6 +16,8 @@ const NavBar = ({ toggleLoginPopup, category }) => {
     const location = useLocation();
     const [userData, setUserData] = useState(null);
     const [isProfileDropdown, setIsProfileDropdown] = useState(false);
+    const [isHoveredDropdown, setIsHoveredDropdown] = useState(null);
+
     const [enrolledCourses, setEnrolledCourses] = useState([]);
     const token = localStorage.getItem("token");
     const userEmail = localStorage.getItem("email");
@@ -43,13 +45,10 @@ const NavBar = ({ toggleLoginPopup, category }) => {
                     params: { email: userEmail },
                     headers: { Authorization: `Bearer ${token}` },
                 }),
-                axios.get(
-                    "/course/getpaidcourses",
-                    {
-                        params: { email: userEmail },
-                        headers: { Authorization: `Bearer ${token}` },
-                    }
-                ),
+                axios.get("/course/getpaidcourses", {
+                    params: { email: userEmail },
+                    headers: { Authorization: `Bearer ${token}` },
+                }),
             ]);
 
             if (userResponse.status === 200 && coursesResponse.status === 200) {
@@ -75,10 +74,9 @@ const NavBar = ({ toggleLoginPopup, category }) => {
 
     const handleForgotPassword = async () => {
         try {
-            const response = await axios.post(
-                "/user/forgotpassword",
-                { email: userEmail }
-            );
+            const response = await axios.post("/user/forgotpassword", {
+                email: userEmail,
+            });
             if (response.status === 200) {
                 alert("Check Your E-Mail..!");
             }
@@ -86,6 +84,13 @@ const NavBar = ({ toggleLoginPopup, category }) => {
             console.error(error);
             alert("Failed to reset password");
         }
+    };
+    const handleMouseEnter = (dropdownName) => {
+        setIsHoveredDropdown(dropdownName);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHoveredDropdown(null);
     };
 
     useEffect(() => {
@@ -112,7 +117,7 @@ const NavBar = ({ toggleLoginPopup, category }) => {
                 style={{ backgroundColor: "transparent" }}
             >
                 <Nav
-                    className="mr-auto"
+                    className="ml-auto flex items-center md:justify-center md:gap-4 lg:gap-6"
                     style={{ backgroundColor: "transparent" }}
                 >
                     <Nav.Link
@@ -127,6 +132,9 @@ const NavBar = ({ toggleLoginPopup, category }) => {
                         title="Skills"
                         id="collasible-nav-dropdown"
                         style={{ background: "transparent" }}
+                        onMouseEnter={() => handleMouseEnter("skills")}
+                        onMouseLeave={handleMouseLeave}
+                        show={isHoveredDropdown === "skills"}
                         className={
                             location.pathname === "/courses" ? "active" : ""
                         }
@@ -185,6 +193,9 @@ const NavBar = ({ toggleLoginPopup, category }) => {
                         title="Products"
                         id="collasible-nav-dropdown"
                         style={{ background: "transparent" }}
+                        onMouseEnter={() => handleMouseEnter("products")}
+                        onMouseLeave={handleMouseLeave}
+                        show={isHoveredDropdown === "products"}
                         className={
                             location.pathname === "/courses" ? "active" : ""
                         }
@@ -216,10 +227,14 @@ const NavBar = ({ toggleLoginPopup, category }) => {
                             </NavDropdown.Item>
                         )}
                     </NavDropdown>
+
                     <NavDropdown
                         title="Company"
                         id="collasible-nav-dropdown"
                         style={{ backgroundColor: "transparent" }}
+                        onMouseEnter={() => handleMouseEnter("company")}
+                        onMouseLeave={handleMouseLeave}
+                        show={isHoveredDropdown === "company"}
                     >
                         <NavDropdown.Item href="aboutus">
                             About Us
@@ -234,7 +249,7 @@ const NavBar = ({ toggleLoginPopup, category }) => {
                     </NavDropdown>
                 </Nav>
 
-                <Nav style={{ backgroundColor: "transparent" }}>
+                <Nav className="bg-transparent flex items-center justify-center gap-3">
                     <Nav.Link href="#">
                         {userEmail ? (
                             <li
@@ -332,6 +347,7 @@ const NavBar = ({ toggleLoginPopup, category }) => {
                             </li>
                         )}
                     </Nav.Link>
+
                     <Nav.Link id="tooltip">
                         <FontAwesomeIcon icon={faPhoneAlt} />
                         <span id="tooltiptext">040-49170923</span>
