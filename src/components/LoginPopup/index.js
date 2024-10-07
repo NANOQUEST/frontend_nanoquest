@@ -81,11 +81,12 @@ const LoginPopup = ({ toggleLoginPopup }) => {
 
     const handleFirebaseLogin = async () => {
         try {
+            toggleLoginPopup(false);
             await signInWithGoogle();
             localStorage.setItem("userEmail ", true);
             toast.success("Login with Google successful");
-            toggleLoginPopup(false);
         } catch (error) {
+            alert("hiss");
             console.error("Firebase login failed:", error);
             toast.error("Firebase login failed. Please try again.");
         }

@@ -163,10 +163,32 @@ const Hero = ({ toggleLoginPopup }) => {
                 <Carousel />
             </div>
 
-            <div className="services-container">
-                <div className="service-cards-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div className="service-card  p-6 rounded-lg ">
-                        <div className="service-card-content mb-4">
+            <div className="mt-20 bg-blue-950">
+                <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="rounded-lg flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <div className="sm:order-1">
+                            <motion.img
+                                initial={{ scale: 0.5, opacity: 0 }}
+                                whileInView={{ scale: 1, opacity: 1 }}
+                                transition={{
+                                    delay: 0.4,
+                                    scale: {
+                                        type: "spring",
+                                        stiffness: 260,
+                                        damping: 20,
+                                    },
+                                    opacity: { duration: 1 },
+                                    ease: "easeInOut",
+                                    duration: 1,
+                                }}
+                                src={serviceImg1}
+                                alt="service-img"
+                                className="w-full h-auto rounded-lg"
+                                loading="lazy"
+                            />
+                        </div>
+
+                        <div className="">
                             <motion.h4
                                 initial={{ x: -100, opacity: 0 }}
                                 whileInView={{ x: 0, opacity: 1 }}
@@ -177,10 +199,11 @@ const Hero = ({ toggleLoginPopup }) => {
                                     ease: "easeIn",
                                     duration: 1,
                                 }}
-                                className="text-xl font-semibold"
+                                className="text-xl font-semibold text-white"
                             >
                                 Skill Courses
                             </motion.h4>
+
                             <motion.p
                                 initial={{ x: -100, opacity: 0 }}
                                 whileInView={{ x: 0, opacity: 1 }}
@@ -198,7 +221,10 @@ const Hero = ({ toggleLoginPopup }) => {
                                 skills.
                             </motion.p>
                         </div>
-                        <div className="service-card-image">
+                    </div>
+
+                    <div className="rounded-lg flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <div className="">
                             <motion.img
                                 initial={{ scale: 0.5, opacity: 0 }}
                                 whileInView={{ scale: 1, opacity: 1 }}
@@ -215,13 +241,163 @@ const Hero = ({ toggleLoginPopup }) => {
                                 }}
                                 src={serviceImg1}
                                 alt="service-img"
-                                className="service-img w-full h-auto rounded-lg"
+                                className="w-full h-auto rounded-lg"
                                 loading="lazy"
                             />
                         </div>
+
+                        <div className="">
+                            <motion.h4
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{
+                                    delay: 0.2,
+                                    x: { type: "string", stiffness: 60 },
+                                    opacity: { duration: 1 },
+                                    ease: "easeIn",
+                                    duration: 1,
+                                }}
+                                className="text-xl font-semibold text-white"
+                            >
+                                Skill Courses
+                            </motion.h4>
+
+                            <motion.p
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{
+                                    delay: 0.4,
+                                    x: { type: "string", stiffness: 60 },
+                                    opacity: { duration: 1 },
+                                    ease: "easeIn",
+                                    duration: 1,
+                                }}
+                                className="text-base"
+                            >
+                                Choose from a wide range of skill courses
+                                designed to help you develop and master new
+                                skills.
+                            </motion.p>
+                        </div>
                     </div>
 
-                    <div className="service-card  p-6 rounded-lg ">
+                    <div className="rounded-lg flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <div className="sm:order-1">
+                            <motion.img
+                                initial={{ scale: 0.5, opacity: 0 }}
+                                whileInView={{ scale: 1, opacity: 1 }}
+                                transition={{
+                                    delay: 0.4,
+                                    scale: {
+                                        type: "spring",
+                                        stiffness: 260,
+                                        damping: 20,
+                                    },
+                                    opacity: { duration: 1 },
+                                    ease: "easeInOut",
+                                    duration: 1,
+                                }}
+                                src={serviceImg1}
+                                alt="service-img"
+                                className="w-full h-auto rounded-lg"
+                                loading="lazy"
+                            />
+                        </div>
+
+                        <div className="">
+                            <motion.h4
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{
+                                    delay: 0.2,
+                                    x: { type: "string", stiffness: 60 },
+                                    opacity: { duration: 1 },
+                                    ease: "easeIn",
+                                    duration: 1,
+                                }}
+                                className="text-xl font-semibold text-white"
+                            >
+                                Skill Courses
+                            </motion.h4>
+
+                            <motion.p
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{
+                                    delay: 0.4,
+                                    x: { type: "string", stiffness: 60 },
+                                    opacity: { duration: 1 },
+                                    ease: "easeIn",
+                                    duration: 1,
+                                }}
+                                className="text-base"
+                            >
+                                Choose from a wide range of skill courses
+                                designed to help you develop and master new
+                                skills.
+                            </motion.p>
+                        </div>
+                    </div>
+
+                    <div className="rounded-lg flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <div className="">
+                            <motion.img
+                                initial={{ scale: 0.5, opacity: 0 }}
+                                whileInView={{ scale: 1, opacity: 1 }}
+                                transition={{
+                                    delay: 0.4,
+                                    scale: {
+                                        type: "spring",
+                                        stiffness: 260,
+                                        damping: 20,
+                                    },
+                                    opacity: { duration: 1 },
+                                    ease: "easeInOut",
+                                    duration: 1,
+                                }}
+                                src={serviceImg1}
+                                alt="service-img"
+                                className="w-full h-auto rounded-lg"
+                                loading="lazy"
+                            />
+                        </div>
+
+                        <div className="">
+                            <motion.h4
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{
+                                    delay: 0.2,
+                                    x: { type: "string", stiffness: 60 },
+                                    opacity: { duration: 1 },
+                                    ease: "easeIn",
+                                    duration: 1,
+                                }}
+                                className="text-xl font-semibold text-white"
+                            >
+                                Skill Courses
+                            </motion.h4>
+
+                            <motion.p
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                transition={{
+                                    delay: 0.4,
+                                    x: { type: "string", stiffness: 60 },
+                                    opacity: { duration: 1 },
+                                    ease: "easeIn",
+                                    duration: 1,
+                                }}
+                                className="text-base"
+                            >
+                                Choose from a wide range of skill courses
+                                designed to help you develop and master new
+                                skills.
+                            </motion.p>
+                        </div>
+                    </div>
+
+                    {/* <div className="service-card  p-6 rounded-lg ">
                         <div className="service-card-content mb-4">
                             <motion.h4
                                 initial={{ x: -100, opacity: 0 }}
@@ -383,7 +559,7 @@ const Hero = ({ toggleLoginPopup }) => {
                                 relevant content and products
                             </motion.p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

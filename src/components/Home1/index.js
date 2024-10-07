@@ -10,6 +10,7 @@ const Home = () => {
     const [showLoginPopUp, setShowLoginPopUp] = useState(false);
     const [registerModal, setRegisterModal] = useState(false);
     const toggleLoginPopup = (value) => {
+        console.log("toggleLoginPopup", value);
         setShowLoginPopUp(value);
     };
 

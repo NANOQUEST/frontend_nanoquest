@@ -85,6 +85,7 @@ const NavBar = ({ toggleLoginPopup, category }) => {
             alert("Failed to reset password");
         }
     };
+
     const handleMouseEnter = (dropdownName) => {
         setIsHoveredDropdown(dropdownName);
     };
@@ -112,6 +113,7 @@ const NavBar = ({ toggleLoginPopup, category }) => {
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
             <Navbar.Collapse
                 id="responsive-navbar-nav"
                 style={{ backgroundColor: "transparent" }}
