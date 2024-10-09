@@ -68,6 +68,7 @@ const SubCourse = () => {
                         {/* <Link to='/courses' className='text-lg text-white bread-crum bg-transparent'>Courses</Link>/{category.category} */}
                     </h1>
                     <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 bg-transparent">
+                        
                         {subCourses.map((subCourse) => (
                             <article
                                 key={subCourse._id}
@@ -95,6 +96,7 @@ const SubCourse = () => {
                                 </div>
                             </article>
                         ))}
+                        
                     </div>
                 </div>
             </div>
