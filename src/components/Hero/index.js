@@ -7,11 +7,11 @@ import serviceImg2 from "../../assets/service-img-2.avif";
 import serviceImg3 from "../../assets/service-img-3.avif";
 import wcu1 from "../../assets/wcu-1.avif";
 import wcu2 from "../../assets/wcu-2.avif";
-import Carousel from "../Carousel";
+import Carousel from "../carousel";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "framer-motion";
 import StaticNumber from "../StaticNumber";
-import RecipeReviewCard from "../RecipeReviewCard";
+import UpcomingWebinar from "../upcomingWebinars";
 import BubbleBackground from "../bubbleBackground";
 // import LoginPopup from '../LoginPopup';
 // import ContactUs from '../Contactus';
@@ -19,27 +19,27 @@ import BubbleBackground from "../bubbleBackground";
 const trendingSkills = [
     {
         image: "https://res.cloudinary.com/dyjkp0r0x/image/upload/v1716349097/Default_artificial_inteliigence_1_eui3pb.jpg",
-        skill: "Artificial Intelligence",
+        title: "Artificial Intelligence",
         description: "Description for Artificial Intelligence",
     },
     {
         image: "https://res.cloudinary.com/dyjkp0r0x/image/upload/v1716349179/Default_internetof_things_1_x8jdr0.jpg",
-        skill: "Full Stack Development",
+        title: "Full Stack Development",
         description: "Description for Full Stack Development",
     },
     {
         image: "https://res.cloudinary.com/dyjkp0r0x/image/upload/v1716349750/Default_fintech_0_lpvjrj.jpg",
-        skill: "Fintech",
+        title: "Fintech",
         description: "Description for Fintech",
     },
     {
         image: "https://res.cloudinary.com/dyjkp0r0x/image/upload/v1716347189/Default_virtual_reaity_1_v4tgtp.jpg",
-        skill: "Game Tech",
+        title: "Game Tech",
         description: "Description for Game Tech",
     },
     {
         image: "https://res.cloudinary.com/dyjkp0r0x/image/upload/v1716349240/Default_gaming_technology_1_zrlzc1.jpg",
-        skill: "Generative AI",
+        title: "Generative AI",
         description: "Description for Generative AI",
     },
 ];
@@ -108,6 +108,19 @@ const Hero = ({ toggleLoginPopup }) => {
             toggleLoginPopup(true);
         }
     }
+
+    const renderCustomCarouselTrendingSkillsCard = (item) => (
+        <div className="flex flex-col h-full rounded-xl shadow-md overflow-hidden p-2 gap-2">
+            <img
+                src={item.image}
+                alt={item.title}
+                className="rounded-xl w-full object-cover"
+            />
+            <h2 className="mt-2 text-lg sm:text-xl text-nowrap truncate text-center">
+                {item.title}
+            </h2>
+        </div>
+    );
 
     return (
         <div className="relative px-4 md:px-8 lg:px-16 overflow-hidden">
@@ -186,7 +199,8 @@ const Hero = ({ toggleLoginPopup }) => {
                 </div>
             </div>
             <StaticNumber />
-            <RecipeReviewCard />
+            <UpcomingWebinar />
+
             <div className="mt-20">
                 <motion.h1
                     initial={{ x: -50, opacity: 0 }}
@@ -203,8 +217,12 @@ const Hero = ({ toggleLoginPopup }) => {
                     Trending Skills
                 </motion.h1>
 
-                <Carousel />
+                <Carousel
+                    data={trendingSkills}
+                    renderCard={renderCustomCarouselTrendingSkillsCard}
+                />
             </div>
+
             <div className="mt-20 bg-blue-950 p-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="rounded-lg flex flex-col gap-3 sm:flex-row sm:items-center">

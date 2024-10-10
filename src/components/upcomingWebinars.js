@@ -1,9 +1,10 @@
 import bigDataImg from "../assets/big-data.png";
 import blockchainImg from "../assets/blockchain-and-fintech.png";
 import { motion } from "framer-motion";
+import Carousel from "./carousel";
 
-export default function RecipeReviewCard() {
-    const data = [
+const UpcomingWebinar = () => {
+    const upcomingWebinarData = [
         {
             name: "Big Data",
             description:
@@ -11,13 +12,6 @@ export default function RecipeReviewCard() {
             img: bigDataImg,
             url: "https://meet.zoho.in/MGLuu5aKiO",
         },
-        // {
-        //     id: 2,
-        //     name: "Introduction to Blockchain and Cryptocurrency",
-        //     description: "Dive into the latest trend in the web3 ",
-        //     img: p2,
-        //     url: "https://meet.zoho.in/2CC995Cfj9",
-        // },
         {
             name: "Fundamentals of Fintech and Blockchain",
             description: "Know the insights of Fintech and Blockchain",
@@ -27,8 +21,37 @@ export default function RecipeReviewCard() {
     ];
 
     const handleClick = (url) => {
-        window.location.href = url; // Google Form URL
+        window.location.href = url;
     };
+
+    const renderCustomCarouselTrendingSkillsCard = (item, index) => (
+        <div
+            key={index}
+            className="rounded-xl shadow-md overflow-hidden w-full bg-white max-w-sm"
+        >
+            <img
+                className="w-full object-cover"
+                src={item.img}
+                alt={item.name}
+            />
+
+            <div className="p-6 h-56 flex flex-col justify-between">
+                <div>
+                    <h2 className="text-xl font-bold text-black">
+                        {item.name}
+                    </h2>
+                    <p className="text-gray-400 mt-3">{item.description}</p>
+                </div>
+
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 w-full rounded focus:outline-none"
+                    onClick={() => handleClick(item.url)}
+                >
+                    Register NOW!!
+                </button>
+            </div>
+        </div>
+    );
 
     return (
         <div className="mt-20">
@@ -47,7 +70,12 @@ export default function RecipeReviewCard() {
                 upcoming webinars
             </motion.h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 justify-items-center p-5 md:p-4 overflow-hidden">
+            <Carousel
+                data={upcomingWebinarData}
+                renderCard={renderCustomCarouselTrendingSkillsCard}
+            />
+
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 justify-items-center p-5 md:p-4 overflow-hidden">
                 {data.map((item, index) => (
                     <motion.div
                         key={index}
@@ -81,7 +109,9 @@ export default function RecipeReviewCard() {
                         </div>
                     </motion.div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
-}
+};
+
+export default UpcomingWebinar;
