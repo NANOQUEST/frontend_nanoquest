@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "framer-motion";
 import StaticNumber from "../StaticNumber";
 import UpcomingWebinar from "../upcomingWebinars";
-import BubbleBackground from "../bubbleBackground";
 // import LoginPopup from '../LoginPopup';
 // import ContactUs from '../Contactus';
 
@@ -124,10 +123,6 @@ const Hero = ({ toggleLoginPopup }) => {
 
     return (
         <div className="relative px-4 md:px-8 lg:px-16 overflow-hidden">
-            {/* Bubble Background Component */}
-            {/* <BubbleBackground />{" "} */}
-            <BubbleBackground />
-            {/* Add this line to include the BubbleBackground */}
             <div className="my-14 flex flex-col sm:flex-row sm:mt-28 sm:items-center sm:justify-around">
                 <div className="self-center sm:order-1">
                     <motion.img

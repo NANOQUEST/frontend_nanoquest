@@ -144,7 +144,7 @@ const NavBar = ({ toggleLoginPopup, category }) => {
                         {localStorage.getItem("email") ? (
                             <>
                                 <NavDropdown.Item
-                                    href=""
+                                    href="/hi"
                                     style={{ ...hoverStyle }}
                                 >
                                     BFSI
