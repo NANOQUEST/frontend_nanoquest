@@ -1,5 +1,8 @@
-// skills details
+import bigDataImg from "./assets/big-data.png";
+import blockchainImg from "./assets/blockchain-and-fintech.png";
+import cryptoCurrency from "./assets/crypto-currency.png";
 
+// skills details
 export const skillsDetails = [
     {
         category: "BFSI",
@@ -166,5 +169,37 @@ export const skillsDetails = [
                 ],
             },
         ],
+    },
+];
+
+// webinar details
+export const webinarDetails = [
+    {
+        title: "Big Data",
+        description:
+            "Get the best insights in the new emerging technology in the world of Data Science",
+        img: bigDataImg,
+        registerUrl: "https://meet.zoho.in/MGLuu5aKiO",
+        date: "2024-05-10",
+        startTime: "15:00",
+        endTime: "16:00",
+    },
+    {
+        title: "Fundamentals of Fintech and Blockchain",
+        description: "Know the insights of Fintech and Blockchain",
+        img: blockchainImg,
+        registerUrl: "https://meet.zoho.in/6vwA26klUZ",
+        date: "2024-10-06",
+        startTime: "11:00",
+        endTime: "16:00",
+    },
+    {
+        title: "Introduction to Blockchain and Cryptocurrency",
+        description: "Know the insights of Blockchain and Cryptocurrency",
+        img: cryptoCurrency,
+        registerUrl: "https://meet.zoho.in/2CC995Cfj9",
+        date: "2024-10-19",
+        startTime: "11:00",
+        endTime: "16:00",
     },
 ];

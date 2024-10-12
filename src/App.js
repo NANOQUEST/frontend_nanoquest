@@ -22,9 +22,10 @@ import Teams from "./components/Teams";
 import Careers from "./components/Careers";
 import NotFound from "./components/NotFound";
 import FixedButton from "./components/FixedButton";
-import RecipeReviewCard from "./components/upcomingWebinars";
+import UpcomingWebinars from "./components/upcomingWebinars";
 import BubbleBackground from "./components/bubbleBackground";
 import SkillDetails from "./components/skillsDetails";
+import PastWebinars from "./components/pastWebinars";
 
 const App = () => {
     const [cartCourses, setCartCourses] = useState([]);
@@ -67,7 +68,8 @@ const App = () => {
                     <Route path="/subcourse/:id" element={<SubCourse />} />
                     <Route path="/skills/:id" element={<SkillDetails />} />
                     <Route path="*" element={<NotFound status={404} />} />
-                    <Route path="/webinars" element={<RecipeReviewCard />} />
+                    <Route path="/webinars" element={<UpcomingWebinars />} />
+                    <Route path="/past-webinars" element={<PastWebinars />} />
                 </Routes>
 
                 <Footer />
