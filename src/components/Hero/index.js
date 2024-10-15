@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Typewriter } from "react-simple-typewriter";
 import desktopImg from "../../assets/desktop-landing-image.jpg";
 import serviceImg1 from "../../assets/service-img-1.avif";
 import serviceImg2 from "../../assets/service-img-2.avif";
@@ -44,9 +45,6 @@ const trendingSkills = [
 ];
 
 const Hero = ({ toggleLoginPopup }) => {
-    const [typedText, setTypedText] = useState("");
-    const [startTyping, setStartTyping] = useState(false);
-
     const navigate = useNavigate();
 
     const blognavigate = (event) => {
@@ -57,47 +55,6 @@ const Hero = ({ toggleLoginPopup }) => {
             navigate("/blog2");
         }
     };
-
-    // Start typing effect when component mounts
-    useEffect(() => {
-        setStartTyping(true);
-    }, []);
-
-    // Typing effect logic
-    useEffect(() => {
-        const texts = ["Nanoquest", "skill learning platform"];
-        let currentTextIndex = 0;
-        let index = 0;
-        let typingIntervalId;
-        let clearTextTimeoutId;
-
-        const typeText = () => {
-            typingIntervalId = setInterval(() => {
-                if (index <= texts[currentTextIndex].length) {
-                    setTypedText(texts[currentTextIndex].slice(0, index));
-                    index++;
-                } else {
-                    clearInterval(typingIntervalId);
-                    clearTextTimeoutId = setTimeout(() => {
-                        index = 0;
-                        setTypedText("");
-                        currentTextIndex =
-                            (currentTextIndex + 1) % texts.length;
-                        typeText(); // Start typing the next text
-                    }, 1000);
-                }
-            }, 300);
-        };
-
-        if (startTyping) {
-            typeText();
-        }
-
-        return () => {
-            clearInterval(typingIntervalId);
-            clearTimeout(clearTextTimeoutId);
-        };
-    }, [startTyping]);
 
     function checkLocalStorage() {
         const emailExists = localStorage.getItem("email");
@@ -120,6 +77,20 @@ const Hero = ({ toggleLoginPopup }) => {
             </h2>
         </div>
     );
+
+    const typeWriter = () => {
+        const text = ["NanoQuest", "skill learning platform"];
+        return (
+            <Typewriter
+                words={text}
+                loop={true}
+                cursor
+                typeSpeed={80}
+                deleteSpeed={50}
+                delaySpeed={1000}
+            />
+        );
+    };
 
     return (
         <div className="relative px-4 md:px-8 lg:px-16 overflow-hidden">
@@ -155,8 +126,8 @@ const Hero = ({ toggleLoginPopup }) => {
                         }}
                         className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 capitalize"
                     >
-                        Welcome To {typedText}
-                        <span className="typing-cursor"></span>
+                        Welcome To{" "}
+                        <span className="capitalize">{typeWriter()}</span>
                     </motion.h1>
 
                     <motion.p

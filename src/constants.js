@@ -200,6 +200,15 @@ export const webinarDetails = [
         registerUrl: "https://meet.zoho.in/2CC995Cfj9",
         date: "2024-10-19",
         startTime: "11:00",
-        endTime: "16:00",
+        endTime: "12:00",
+    },
+    {
+        title: "Introduction to Blockchssain and Cryptocurrency",
+        description: "Know the insights of Blockchain and Cryptocurrency",
+        img: cryptoCurrency,
+        registerUrl: "https://meet.zoho.in/2CC995Cfj9",
+        date: "2024-10-19",
+        startTime: "11:00",
+        endTime: "12:00",
     },
 ];
